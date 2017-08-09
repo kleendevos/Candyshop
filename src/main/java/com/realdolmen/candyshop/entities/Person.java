@@ -4,8 +4,8 @@ import com.realdolmen.candyshop.util.AgeCalculator;
 import com.realdolmen.candyshop.util.Datebuilder;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by vdabcursist on 08/08/2017.
@@ -27,7 +27,10 @@ public class Person {
     @Embedded
     private Address address;
 
-
+    @CollectionTable
+    @ElementCollection
+    @Enumerated(EnumType.STRING)
+    private List<Candycolor> candyprefence;
 
 
 
@@ -44,6 +47,13 @@ public class Person {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthdate = Datebuilder.createDate(birthdate);
+
+    }
+
+    public Person(String firstName, String lastName, List<Candycolor> candyprefence) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.candyprefence = candyprefence;
     }
 
     public Long getId() {

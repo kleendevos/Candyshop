@@ -27,10 +27,11 @@ public class Main {
         Person person = new Person("John", "Doe", "2011-01-01");
         em.persist(person);
 
+
+
         Candy candy = new Candy("Beertje", Candycolor.BLACK);
         em.persist(candy);
         tx.commit();
-
 
 
         List<Person> people = em.createQuery("SELECT p FROM Person p", Person.class).getResultList();

@@ -39,7 +39,7 @@ public class PersonDAOTest {
 
     @Test
     public void shouldSavePerson(){
-        Person p = new Person("Tim", "Test", "2000-01-01");
+        Person p = new Person("Tim", "Test", "2000-01-01", candyprefence);
         Long id = dao.createPerson(p);
         assertNotNull(id);
         assertEquals(new Long(3L),id);
@@ -56,9 +56,8 @@ public class PersonDAOTest {
 
     @After
     public void destroy (){
-        System.out.println("rollingback");
-        tx.rollback();
-        em.close();
+       tx.rollback();
+       em.close();
     }
 
 
