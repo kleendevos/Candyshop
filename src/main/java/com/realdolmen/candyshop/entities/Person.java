@@ -1,8 +1,10 @@
 package com.realdolmen.candyshop.entities;
 
+import com.realdolmen.candyshop.util.AgeCalculator;
 import com.realdolmen.candyshop.util.Datebuilder;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -14,12 +16,17 @@ public class Person {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column (nullable = false, length = 200)
     private String firstName;
+    @Column (nullable = false, length = 200)
     private String lastName;
     @Temporal(TemporalType.DATE) @Column(nullable = false)
     private Date birthdate;
     @Transient
-    private Long age;
+    private int age;
+    @Embedded
+    private Address address;
+
 
 
 
@@ -71,11 +78,11 @@ public class Person {
         this.birthdate = birthdate;
     }
 
-    public Long getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(Long age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
@@ -86,6 +93,7 @@ public class Person {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthdate='" + Datebuilder.createString(birthdate) + '\'' +
+                ", age='" + AgeCalculator.calculateAge(birthdate)+
                 '}';
     }
 }
