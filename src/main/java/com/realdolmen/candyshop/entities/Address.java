@@ -1,8 +1,11 @@
 package com.realdolmen.candyshop.entities;
 
+import javax.persistence.Embeddable;
+
 /**
  * Created by kathleendevos on 9/08/17.
  */
+@Embeddable
 public class Address {
     private String street;
     private String number;

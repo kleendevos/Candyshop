@@ -39,7 +39,7 @@ public class PersonDAOTest {
 
     @Test
     public void shouldSavePerson(){
-        Person p = new Person("Tim", "Test", "2000-01-01", candyprefence);
+        Person p = new Person("Tim", "Test", "2000-01-01");
         Long id = dao.createPerson(p);
         assertNotNull(id);
         assertEquals(new Long(3L),id);

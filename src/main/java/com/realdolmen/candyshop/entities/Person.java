@@ -4,6 +4,7 @@ import com.realdolmen.candyshop.util.AgeCalculator;
 import com.realdolmen.candyshop.util.Datebuilder;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,10 +31,18 @@ public class Person {
     @CollectionTable
     @ElementCollection
     @Enumerated(EnumType.STRING)
-    private List<Candycolor> candyprefence;
+    private List<Candycolor> candyprefence = new ArrayList<>();
 
+    @OneToMany (mappedBy = "person")
+    private List<Order>orders = new ArrayList<>();
 
+    public List<Order> getOrders() {
+        return orders;
+    }
 
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
 
     public Person(String firstName, String lastName) {
         this.firstName = firstName;
@@ -89,12 +98,34 @@ public class Person {
     }
 
     public int getAge() {
-        return age;
+      return age;
     }
 
     public void setAge(int age) {
-        this.age = age;
+       this.age = age;
+   }
+
+    public Address getAddress() {
+        return address;
     }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public List<Candycolor> getCandyprefence() {
+        return candyprefence;
+    }
+
+    public void setCandyprefence(List<Candycolor> candyprefence) {
+        this.candyprefence = candyprefence;
+    }
+
+    public void addCandyPreference (Candycolor color){
+        this.candyprefence.add(color);
+    }
+
+
 
     @Override
     public String toString() {
