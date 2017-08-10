@@ -132,6 +132,7 @@ public class Person {
     }
 
     public int agecalulation (){
+        age = 0;
         setAge(AgeCalculator.calculateAge(birthdate));
         return age;
     }
