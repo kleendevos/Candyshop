@@ -71,6 +71,10 @@ public class PersonDAOTest {
 
     }
 
+    public void shouldcountallpeople (){
+
+    }
+
 
 
 

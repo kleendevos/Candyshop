@@ -14,6 +14,8 @@ public interface PersonDAO {
     Person findPersonById (Long id);
     Person updatePerson (Person person);
     void deletePerson (Person person);
+    long countAllPeople ();
+    List<Person> findByLastName (String lastName);
 
 
 }

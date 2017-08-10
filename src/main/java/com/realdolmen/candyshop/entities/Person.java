@@ -2,8 +2,12 @@ package com.realdolmen.candyshop.entities;
 
 import com.realdolmen.candyshop.util.AgeCalculator;
 import com.realdolmen.candyshop.util.Datebuilder;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,6 +17,8 @@ import java.util.List;
  */
 
 @Entity
+@NamedQuery(name = "FIND_BY_LAST_NAME", query = "select p from Person p where p.lastName = :lname")
+
 public class Person {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -125,6 +131,11 @@ public class Person {
         this.candyprefence.add(color);
     }
 
+    public int agecalulation (){
+        setAge(AgeCalculator.calculateAge(birthdate));
+        return age;
+    }
+
 
 
     @Override
@@ -134,7 +145,7 @@ public class Person {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthdate='" + Datebuilder.createString(birthdate) + '\'' +
-                ", age='" + AgeCalculator.calculateAge(birthdate)+
+                ", age='" + AgeCalculator.calculateAge(birthdate) +
                 '}';
     }
 }

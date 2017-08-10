@@ -41,4 +41,14 @@ public class PersonDAOimpl implements PersonDAO {
         em.remove(em.merge(person));
 
     }
+
+    @Override
+    public long countAllPeople() {
+        return em.createQuery("SELECT COUNT (p) FROM Person p", Long.class).getSingleResult();
+    }
+
+    @Override
+    public List<Person> findByLastName(String lastName) {
+        return em.createNamedQuery("FIND_BY_LAST_NAME", Person.class).setParameter("lname", lastName).getResultList();
+    }
 }
