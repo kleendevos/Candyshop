@@ -53,6 +53,29 @@ public class PersonDAOTest {
         assertEquals(2, people.size());
 
     }
+    @Test
+    public void shouldFindPersonById(){
+        Person person = dao.findPersonById(1L);
+        assertNotNull(person);
+        assertEquals(new Long(1L),person.getId());
+        assertEquals("Jane", person.getFirstName());
+    }
+
+    @Test
+    public void shouldUpdatePerson () {
+        Person person = dao.findPersonById(1L);
+        assertNotNull(person);
+        person.setFirstName("Joe");
+        assertEquals(new Long(1L), person.getId());
+        assertEquals("Joe",person.getFirstName());
+
+    }
+
+
+
+
+
+
 
     @After
     public void destroy (){

@@ -25,4 +25,20 @@ public class PersonDAOimpl implements PersonDAO {
 
         return em.createQuery("SELECT p FROM Person p",Person.class).getResultList();
     }
+
+    @Override
+    public Person findPersonById(Long id) {
+        return em.find(Person.class,id);
+    }
+
+    @Override
+    public Person updatePerson(Person person) {
+        return em.merge(person);
+    }
+
+    @Override
+    public void deletePerson(Person person) {
+        em.remove(em.merge(person));
+
+    }
 }
